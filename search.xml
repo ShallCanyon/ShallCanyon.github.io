@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>关于CentOS更新python后导致yum出错的原因与修补方法</title>
+    <url>/2020/04/yum-bug-after-pyUpgrade/</url>
+    <content><![CDATA[<p>在某一天突发奇想，想在阿里云服务器上装MC服务器时，发现没有安装JRE，于是通过yum安装时发生以下报错</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># sudo yum install java-1.8.0-openjdk</span></span><br><span class="line">  File <span class="string">"/bin/yum"</span>, line 30</span><br><span class="line">    except KeyboardInterrupt, e:</span><br><span class="line">                            ^</span><br></pre></td></tr></table></figure>
+
+<p>谷歌后查询到出现该问题的原因主要是yum使用的是python2，而系统的python更新了导致的不兼容。回想了一下确实之前是安装了3.7的python。可以通过输入命令来查看</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python</span></span><br><span class="line">Python 3.7.2 (default, Nov 24 2019, 22:09:10) </span><br><span class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-39)] on linux</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python2.7</span></span><br><span class="line">Python 2.7.5 (default, Jun 20 2019, 20:27:34) </span><br><span class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-36)] on linux2</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过编辑/usr/bin/yum，将</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br></pre></td></tr></table></figure>
+
+<p>改为</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python2.7</span></span><br></pre></td></tr></table></figure>
+
+<p>保存后再次安装JRE，但这时再次发现新报错</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">File <span class="string">"/usr/libexec/urlgrabber-ext-down"</span>, line 28</span><br><span class="line">  except OSError, e:</span><br><span class="line">                ^</span><br></pre></td></tr></table></figure>
+
+<p>再次谷歌，得到结果是<strong>urlgrabber-ext-down</strong>也使用的python2，除此之外，还有<strong>/usr/bin/yum-config-manager</strong>和<strong>/usr/bin/gnome-tweak-tool</strong>（如果有装的话），把这几个都执行上面的操作，就可以正常使用yum命令了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># sudo yum install java-1.8.0-openjdk</span></span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Determining fastest mirrors</span><br><span class="line">(1/4): extras/7/x86_64/primary_db                                                   | 165 kB  00:00:00     </span><br><span class="line">(2/4): epel/x86_64/primary_db                                                       | 6.8 MB  00:00:00     </span><br><span class="line">(3/4): updates/7/x86_64/primary_db                                                  | 7.6 MB  00:00:00     </span><br><span class="line">(4/4): docker-ce-stable/x86_64/primary_db                                           |  41 kB  00:00:00     </span><br><span class="line">Resolving Dependencies</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package java-1.8.0-openjdk.x86_64 1:1.8.0.242.b08-0.el7_7 will be installed</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>bug</tag>
+        <tag>yum</tag>
+        <tag>CentOS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>test article</title>
     <url>/2020/02/test-article/</url>
     <content><![CDATA[<h4 id="The-first-article-that-needs-to-be-tested"><a href="#The-first-article-that-needs-to-be-tested" class="headerlink" title="The first article that needs to be tested"></a>The first article that needs to be tested</h4><p>Hey there, <strong>stranger</strong>! We won’t <em>meet</em> again.</p>
