@@ -96,7 +96,7 @@
 <p>接下来怎么编写UI和功能代码，以及如何处理数据，这就得看自己的发挥了</p>
 <p><strong>我的结果：</strong></p>
 <p><a href="http://pic.shallcanyon.top/image/LhF" target="_blank" rel="noopener"><img src="http://pic.shallcanyon.top/images/2020/04/22/image216857f7da861b9d.png" alt="image216857f7da861b9d.png"></a></p>
-<h4 id="6-补充"><a href="#6-补充" class="headerlink" title="6. 补充"></a>6. 补充</h4><h5 id="6-1-手机的三维轴"><a href="#6-1-手机的三维轴" class="headerlink" title="6.1 手机的三维轴"></a>6.1 手机的三维轴</h5><p>如图所示，对加速度和陀螺仪传感器都受用</p>
+<h4 id="6-补充"><a href="#6-补充" class="headerlink" title="6. 补充"></a>6. 补充</h4><h5 id="6-1-手机对应的三维轴"><a href="#6-1-手机对应的三维轴" class="headerlink" title="6.1 手机对应的三维轴"></a>6.1 手机对应的三维轴</h5><p>如图所示，对加速度和陀螺仪传感器都受用</p>
 <p><a href="http://pic.shallcanyon.top/image/jW0" target="_blank" rel="noopener"><img src="http://pic.shallcanyon.top/images/2020/04/22/image1975bb4b40b6ef86.png" alt="image1975bb4b40b6ef86.png"></a></p>
 <h5 id="6-2-多线程下的UI更新"><a href="#6-2-多线程下的UI更新" class="headerlink" title="6.2 多线程下的UI更新"></a>6.2 多线程下的UI更新</h5><p>为了保证UI线程安全，AS禁止子线程对主线程UI的更新操作，而为了能够让子线程处理的过程中能更新UI，可以通过定义Handler和Message来让子线程发送消息给主线程进行UI的更新</p>
 <h5 id="6-3-源代码分享"><a href="#6-3-源代码分享" class="headerlink" title="6.3 源代码分享"></a>6.3 源代码分享</h5><p>可以通过<a href="cloud.shallcanyon.top/s/54g8jl8c">下载链接</a>下载我的源项目，若有同上嵌入式的同学借鉴的话记得做修改:^</p>
