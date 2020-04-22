@@ -53,7 +53,7 @@
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
   </div>
 
       
@@ -99,6 +99,8 @@
       <p>在某一天突发奇想，想在阿里云服务器上装MC服务器时，发现没有安装JRE，于是通过yum安装时发生以下报错</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sudo yum install java-1.8.0-openjdk</span></span><br><span class="line">  File <span class="string">"/bin/yum"</span>, line 30</span><br><span class="line">    except KeyboardInterrupt, e:</span><br><span class="line">                            ^</span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
+
 <p>谷歌后查询到出现该问题的原因主要是yum使用的是python2，而系统的python更新了导致的不兼容。回想了一下确实之前是安装了3.7的python。可以通过输入命令来查看</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python</span></span><br><span class="line">Python 3.7.2 (default, Nov 24 2019, 22:09:10) </span><br><span class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-39)] on linux</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
 
@@ -134,10 +136,19 @@
   
   <nav class="article-nav">
     
+      <a href="/2020/04/Android-accel-gyro-sensors-application-based-on-sample/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            基于谷歌官方传感器示例代码的安卓手机传感器嵌入式实验过程
+          
+        </div>
+      </a>
     
-      <a href="/2020/02/test-article/" class="article-nav-link">
+    
+      <a href="/2020/02/hello-world/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">test article</div>
+        <div class="article-nav-title">Hello World</div>
       </a>
     
   </nav>

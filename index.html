@@ -76,6 +76,75 @@
     
     
     
+    <article id="post-Android-accel-gyro-sensors-application-based-on-sample" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/Android-accel-gyro-sensors-application-based-on-sample/"
+    >基于谷歌官方传感器示例代码的安卓手机传感器嵌入式实验过程</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/Android-accel-gyro-sensors-application-based-on-sample/" class="article-date">
+  <time datetime="2020-04-22T09:31:30.000Z" itemprop="datePublished">2020-04-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>将近一个月前的嵌入式理论课，老师在结束时突然给了份实验作业——在AS上利用accelerometor（加速度传感器）和gyroscope（陀螺仪）做一个手势识别功能。这个手势识别定义非常模糊，不通过摄像头怎么判断用户的手势？后来上课老师才阐明所谓的手势就是拿手机做出挥手甚至写字的动作，并让软件来判断，而且还不给用第三方库，这就难到不少人了。不过后来老师也说本质上这个是为了让我们实现对传感器的利用，就算是只侦测到手机的移动也算，于是我将原本写一半的代码迅速补充了下，完成了老师的要求。</p>
+      
+      <a class="article-more-link" href="/2020/04/Android-accel-gyro-sensors-application-based-on-sample/">阅读更多...</a>
+      
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NDK/" rel="tag">NDK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/embedded/" rel="tag">embedded</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sensor/" rel="tag">sensor</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-yum-bug-after-pyUpgrade" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -100,7 +169,7 @@
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
   </div>
 
       
@@ -120,25 +189,9 @@
       
       <p>在某一天突发奇想，想在阿里云服务器上装MC服务器时，发现没有安装JRE，于是通过yum安装时发生以下报错</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sudo yum install java-1.8.0-openjdk</span></span><br><span class="line">  File <span class="string">"/bin/yum"</span>, line 30</span><br><span class="line">    except KeyboardInterrupt, e:</span><br><span class="line">                            ^</span><br></pre></td></tr></table></figure>
-
-<p>谷歌后查询到出现该问题的原因主要是yum使用的是python2，而系统的python更新了导致的不兼容。回想了一下确实之前是安装了3.7的python。可以通过输入命令来查看</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python</span></span><br><span class="line">Python 3.7.2 (default, Nov 24 2019, 22:09:10) </span><br><span class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-39)] on linux</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python2.7</span></span><br><span class="line">Python 2.7.5 (default, Jun 20 2019, 20:27:34) </span><br><span class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-36)] on linux2</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>通过编辑/usr/bin/yum，将</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br></pre></td></tr></table></figure>
-
-<p>改为</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python2.7</span></span><br></pre></td></tr></table></figure>
-
-<p>保存后再次安装JRE，但这时再次发现新报错</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">"/usr/libexec/urlgrabber-ext-down"</span>, line 28</span><br><span class="line">  except OSError, e:</span><br><span class="line">                ^</span><br></pre></td></tr></table></figure>
-
-<p>再次谷歌，得到结果是<strong>urlgrabber-ext-down</strong>也使用的python2，除此之外，还有<strong>/usr/bin/yum-config-manager</strong>和<strong>/usr/bin/gnome-tweak-tool</strong>（如果有装的话），把这几个都执行上面的操作，就可以正常使用yum命令了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sudo yum install java-1.8.0-openjdk</span></span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Determining fastest mirrors</span><br><span class="line">(1/4): extras/7/x86_64/primary_db                                                   | 165 kB  00:00:00     </span><br><span class="line">(2/4): epel/x86_64/primary_db                                                       | 6.8 MB  00:00:00     </span><br><span class="line">(3/4): updates/7/x86_64/primary_db                                                  | 7.6 MB  00:00:00     </span><br><span class="line">(4/4): docker-ce-stable/x86_64/primary_db                                           |  41 kB  00:00:00     </span><br><span class="line">Resolving Dependencies</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package java-1.8.0-openjdk.x86_64 1:1.8.0.242.b08-0.el7_7 will be installed</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-
-
+      
+      <a class="article-more-link" href="/2020/04/yum-bug-after-pyUpgrade/">阅读更多...</a>
+      
       
       <!-- 打赏 -->
       
@@ -147,71 +200,6 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CentOS/" rel="tag">CentOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bug/" rel="tag">bug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yum/" rel="tag">yum</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-test-article" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/test-article/"
-    >test article</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/test-article/" class="article-date">
-  <time datetime="2020-02-05T13:32:54.000Z" itemprop="datePublished">2020-02-05</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h4 id="The-first-article-that-needs-to-be-tested"><a href="#The-first-article-that-needs-to-be-tested" class="headerlink" title="The first article that needs to be tested"></a>The first article that needs to be tested</h4><p>Hey there, <strong>stranger</strong>! We won’t <em>meet</em> again.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"See you"</span>)</span><br></pre></td></tr></table></figure>
-
-
-      
-      <!-- 打赏 -->
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/" rel="tag">test</a></li></ul>
 
     </footer>
 
