@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Archives |  ShallCanyon&#39;s Blog
+    如何用浏览器运行jsp文件 |  ShallCanyon&#39;s Blog
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -31,117 +31,198 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article class="articles">
+  <article id="post-open-local-jsp-files-in-explorer" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
     
-    
-    <h1 class="page-type-title">Archives</h1>
-    
-    
-  
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2020" class="archive-year">2020</a>
-    </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/06/open-local-jsp-files-in-explorer/" class="archive-article-date">
-  <time datetime="2020-06-01T17:41:38.000Z" itemprop="datePublished">06/02</time>
-</a>
+    <header class="article-header">
        
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2020/06/open-local-jsp-files-in-explorer/"
-    >如何用浏览器运行jsp文件</a
-  >
-</h2>
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  如何用浏览器运行jsp文件
+</h1>
   
 
     </header>
     
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/Android-accel-gyro-sensors-application-based-on-sample/" class="archive-article-date">
-  <time datetime="2020-04-22T09:31:30.000Z" itemprop="datePublished">04/22</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2020/04/Android-accel-gyro-sensors-application-based-on-sample/"
-    >基于谷歌官方传感器示例代码的安卓手机传感器嵌入式实验过程</a
-  >
-</h2>
-  
 
-    </header>
     
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/yum-bug-after-pyUpgrade/" class="archive-article-date">
-  <time datetime="2020-04-13T09:00:07.000Z" itemprop="datePublished">04/13</time>
+    <div class="article-meta">
+      <a href="/2020/06/open-local-jsp-files-in-explorer/" class="article-date">
+  <time datetime="2020-06-01T17:41:38.000Z" itemprop="datePublished">2020-06-02</time>
 </a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2020/04/yum-bug-after-pyUpgrade/"
-    >关于CentOS更新python后导致yum出错的原因与修补方法</a
-  >
-</h2>
-  
-
-    </header>
-    
-    
-  </div>
-</article>
       
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/02/hello-world/" class="archive-article-date">
-  <time datetime="2020-02-05T09:38:45.829Z" itemprop="datePublished">02/05</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2020/02/hello-world/"
-    >Hello World</a
-  >
-</h2>
-  
-
-    </header>
-    
-    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web/">web</a>
   </div>
-</article>
+
       
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">478字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1分钟</span>
+        </span>
+    </span>
+</div>
+
       
     </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>在初学jsp过程中，遇到了需要运行jsp文件但浏览器只会显示源代码的情况，网上的通用方法是将需要的jsp文件放到”Tomcat根目录/webapps/ROOT”文件夹内，开启Tomcat服务器后在浏览器输入</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">localhost:8080/要运行的jsp文件名</span></span><br></pre></td></tr></table></figure>
+
+<p>对于测试代码来说颇为不便，为此，我在网上找到了一个解决方法。</p>
+<a id="more"></a>
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>通过对Tomcat的配置文件进行设置，可以使Tomcat访问到我们指定的文件夹，这样可以使得文件不用总是要放在ROOT文件夹内，同时支持页面目录，可以方便的选择与运行</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li><p>在你想要的位置建立放置你的jsp文件的文件夹，这里设路径为：D:\jsp_files</p>
+</li>
+<li><p>在”Tomcat根目录/webapps/ROOT”文件夹内复制WEB-INF文件夹到jsp_files文件夹内</p>
+</li>
+<li><p>打开”Tomcat根目录/conf/“下的server.xml和web.xml文件</p>
+</li>
+<li><p>在server.xml文件内添加</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">"/test"</span> <span class="attr">docBase</span>=<span class="string">"D:\jsp_files"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> 我是添加到Valve标签下，即Host标签内。这样使得我们最后可以通过访问localhost:8080/test来访问指定文件夹，其中的 path=”/test” 是别名，可以自己设定</p>
+</li>
+<li><p>在web.xml文件内修改</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>listings<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> 为</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>listings<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> 即将listings设置为true</p>
+</li>
+<li><p>启动或重启Tomcat服务器，同时将我们需要的jsp文件放入jsp_files文件夹内</p>
+<p> <img src="http://pic.shallcanyon.top/images/2020/06/02/Snipaste_2020-06-02_02-01-56.png" alt="Snipaste_2020-06-02_02-01-56.png"></p>
+</li>
+<li><p>打开浏览器，输入网址localhost:8080/test，若网页成功列出jsp_files文件夹内的文件的话，则配置成功</p>
+<p> <a href="http://pic.shallcanyon.top/image/VLe" target="_blank" rel="noopener"><img src="http://pic.shallcanyon.top/images/2020/06/02/Snipaste_2020-06-02_02-02-16.png" alt="Snipaste_2020-06-02_02-02-16.png"></a></p>
+</li>
+<li><p>现在我们可以将要测试的jsp都放在jsp_files文件夹内，刷新页面后（如果有更新）并点击运行了</p>
+<p> <img src="http://pic.shallcanyon.top/images/2020/06/02/Snipaste_2020-06-02_02-05-07.png" alt="Snipaste_2020-06-02_02-05-07.png"></p>
+</li>
+</ol>
+
+      
+      <!-- 打赏 -->
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/explorer/" rel="tag">explorer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsp/" rel="tag">jsp</a></li></ul>
+
+    </footer>
+
   </div>
+
   
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/04/Android-accel-gyro-sensors-application-based-on-sample/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">基于谷歌官方传感器示例代码的安卓手机传感器嵌入式实验过程</div>
+      </a>
+    
+  </nav>
+
+
   
 
   
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: '',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
 </section>
       <footer class="footer">
   <div class="outer">
@@ -291,6 +372,30 @@
 </script>
 
 
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
 
 
 <script>

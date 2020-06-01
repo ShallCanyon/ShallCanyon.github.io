@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>如何用浏览器运行jsp文件</title>
+    <url>/2020/06/open-local-jsp-files-in-explorer/</url>
+    <content><![CDATA[<p>在初学jsp过程中，遇到了需要运行jsp文件但浏览器只会显示源代码的情况，网上的通用方法是将需要的jsp文件放到”Tomcat根目录/webapps/ROOT”文件夹内，开启Tomcat服务器后在浏览器输入</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">localhost:8080/要运行的jsp文件名</span></span><br></pre></td></tr></table></figure>
+
+<p>对于测试代码来说颇为不便，为此，我在网上找到了一个解决方法。</p>
+<a id="more"></a>
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>通过对Tomcat的配置文件进行设置，可以使Tomcat访问到我们指定的文件夹，这样可以使得文件不用总是要放在ROOT文件夹内，同时支持页面目录，可以方便的选择与运行</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li><p>在你想要的位置建立放置你的jsp文件的文件夹，这里设路径为：D:\jsp_files</p>
+</li>
+<li><p>在”Tomcat根目录/webapps/ROOT”文件夹内复制WEB-INF文件夹到jsp_files文件夹内</p>
+</li>
+<li><p>打开”Tomcat根目录/conf/“下的server.xml和web.xml文件</p>
+</li>
+<li><p>在server.xml文件内添加</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">"/test"</span> <span class="attr">docBase</span>=<span class="string">"D:\jsp_files"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> 我是添加到Valve标签下，即Host标签内。这样使得我们最后可以通过访问localhost:8080/test来访问指定文件夹，其中的 path=”/test” 是别名，可以自己设定</p>
+</li>
+<li><p>在web.xml文件内修改</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>listings<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> 为</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>listings<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> 即将listings设置为true</p>
+</li>
+<li><p>启动或重启Tomcat服务器，同时将我们需要的jsp文件放入jsp_files文件夹内</p>
+<p> <img src="http://pic.shallcanyon.top/images/2020/06/02/Snipaste_2020-06-02_02-01-56.png" alt="Snipaste_2020-06-02_02-01-56.png"></p>
+</li>
+<li><p>打开浏览器，输入网址localhost:8080/test，若网页成功列出jsp_files文件夹内的文件的话，则配置成功</p>
+<p> <a href="http://pic.shallcanyon.top/image/VLe" target="_blank" rel="noopener"><img src="http://pic.shallcanyon.top/images/2020/06/02/Snipaste_2020-06-02_02-02-16.png" alt="Snipaste_2020-06-02_02-02-16.png"></a></p>
+</li>
+<li><p>现在我们可以将要测试的jsp都放在jsp_files文件夹内，刷新页面后（如果有更新）并点击运行了</p>
+<p> <img src="http://pic.shallcanyon.top/images/2020/06/02/Snipaste_2020-06-02_02-05-07.png" alt="Snipaste_2020-06-02_02-05-07.png"></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>jsp</tag>
+        <tag>Tomcat</tag>
+        <tag>explorer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于谷歌官方传感器示例代码的安卓手机传感器嵌入式实验过程</title>
     <url>/2020/04/Android-accel-gyro-sensors-application-based-on-sample/</url>
     <content><![CDATA[<p>将近一个月前的嵌入式理论课，老师在结束时突然给了份实验作业——在AS上利用accelerometor（加速度传感器）和gyroscope（陀螺仪）做一个手势识别功能。这个手势识别定义非常模糊，不通过摄像头怎么判断用户的手势？后来上课老师才阐明所谓的手势就是拿手机做出挥手甚至写字的动作，并让软件来判断，而且还不给用第三方库，这就难到不少人了。不过后来老师也说本质上这个是为了让我们实现对传感器的利用，就算是只侦测到手机的移动也算，于是我将原本写一半的代码迅速补充了下，完成了老师的要求。</p>
